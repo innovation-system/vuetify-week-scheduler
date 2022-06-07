@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Dev from './serve.vue';
-import vuetify from '../src/vuetify';
+import vuetify from '../src/plugins/vuetify';
 import 'vuetify/dist/vuetify.min.css'
 
 Vue.config.productionTip = false;

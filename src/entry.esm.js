@@ -1,6 +1,6 @@
 
 // Import vue component
-import component from '@/VuetifyWeekScheduler.vue';
+import component from './vuetify-week-scheduler.vue';
 
 // Default export is installable instance of component.
 // IIFE injects install function into component, allowing component
@@ -11,7 +11,7 @@ export default /*#__PURE__*/(() => {
 
   // Attach install function executed by Vue.use()
   installable.install = (Vue) => {
-    Vue.component('VuetifyWeekScheduler', installable);
+    Vue.component('vuetify-week-scheduler', installable);
   };
   return installable;
 })();

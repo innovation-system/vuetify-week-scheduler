@@ -1,25 +1,40 @@
+<template>
+  <div id="app">
+    <v-container>
+      <h1>Vuetify Week Scheduler</h1>
+      <v-col>
+        <v-checkbox
+          label="Editable"
+          :v-model="editable"
+        ></v-checkbox>
+        <v-btn
+          color="primary"
+          text
+          @click="events = []"
+          > Clear all </v-btn>
+      </v-col>
+      <vuetify-week-scheduler v-model="events" :editable="editable" />
+    </v-container>
+  </div>
+</template>
+
 <script>
-import Vue from 'vue';
-import VuetifyWeekScheduler from '@/VuetifyWeekScheduler.vue';
-import SchedulerPeriod from '@/SchedulerPeriod.vue';
+import Vue from "vue";
+import VuetifyWeekScheduler from "@/vuetify-week-scheduler.vue";
 
 export default Vue.extend({
-  name: 'ServeDev',
+  components: {
+    VuetifyWeekScheduler,
+  },
   data: () => ({
     events: [],
     editable: true,
-    config: {}
+    config: {},
   }),
-  components: {
-    VuetifyWeekScheduler,
-    SchedulerPeriod
+  watch: {
+    editable(val) {
+      console.log(val)
+    },
   }
 });
 </script>
-
-<template>
-  <div id="app">
-    <v-switch label="Editable" v-model="editable" :config="config"></v-switch>
-    <vuetify-week-scheduler v-model="events" :editable="editable" />
-  </div>
-</template>

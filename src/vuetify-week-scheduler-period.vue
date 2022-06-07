@@ -66,6 +66,7 @@
 
 <script>
 export default {
+	name: 'vuetify-week-scheduler-period',
 	props: {
 		period: Object,
 		settings: Object,

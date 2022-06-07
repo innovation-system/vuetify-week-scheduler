@@ -81,8 +81,13 @@
 </template>
 
 <script>
+import SchedulerPeriod from './vuetify-week-scheduler-period.vue';
+
 export default {
-  name: "VuetifyWeekScheduler", // vue component name
+  name: "vuetify-week-scheduler", // vue component name
+  components: {
+    SchedulerPeriod
+  },
   props: {
     config: { type: Object, default: () => {} },
     value: { type: Array, required: true },
