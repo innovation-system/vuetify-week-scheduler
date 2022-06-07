@@ -82,8 +82,11 @@ export default Vue.extend({
     events: [],
     editable: true,
     config: {
+      // default period values
       periodBackgroundColor: "#F44336",
       periodTitle: 0,
+      periodTextColor: "#fff",
+      periodBorderColor: "#ccc",
     },
     editDialog: false,
     editEvent: null,

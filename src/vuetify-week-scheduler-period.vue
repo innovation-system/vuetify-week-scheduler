@@ -4,7 +4,8 @@
       class="vws-period"
       :style="{
         backgroundColor: options.backgroundColor,
-        borderColor: options.borderColor,
+        outlineColor: options.borderColor,
+        textColor: options.textColor,
         color: options.textColor,
         top: period.top + 'px',
         height: period.height + 'px',

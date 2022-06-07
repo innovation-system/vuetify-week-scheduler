@@ -1,8 +1,10 @@
+[![ci](https://github.com/innovation-system/vuetify-week-scheduler/actions/workflows/ci.yml/badge.svg)](https://github.com/innovation-system/vuetify-week-scheduler/actions/workflows/ci.yml)
+
 # Vuetify Week scheduler
 
 > A simple component to manage weekly events
 
-Inspired by https://github.com/Yehzuna/jquery-schedule
+Inspired by [jquery-schedule](https://github.com/Yehzuna/jquery-schedule).
 
 ## Installation
 
@@ -50,9 +52,9 @@ export default {
      days: 7, // number of days, 7/5
      periodDuration: 15, // event duration inteval 15/30/60
      periodTitle: "", // event default title
-     periodBackgroundColor: "#F44336FF", // event color
-     periodBorderColor: "transparent", // event border color
-     periodTextColor: "#000", // event text color
+     periodBackgroundColor: "#F44336FF", // event default color
+     periodBorderColor: "transparent", // event default border color
+     periodTextColor: "#000", // event default text color
      periodRemoveButton: "Remove", // label of event remove button
      periodDuplicateButton: "Duplicate", // label of event duplicate button
      daysList: [    // list of days labels
