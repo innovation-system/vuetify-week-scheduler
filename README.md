@@ -2,6 +2,8 @@
 
 > A simple component to manage weekly events
 
+Inspired by https://github.com/Yehzuna/jquery-schedule
+
 ## Installation
 
 ### NPM
@@ -13,7 +15,7 @@ npm install vuetify-week-scheduler --save
 ### Yarn
 
 ``` bash
-npm add vuetify-week-scheduler
+yarn add vuetify-week-scheduler
 ```
 
 ## Usage
@@ -28,14 +30,14 @@ And add to parent component
 
 ``` javascript
 export default {
-       components: {
-           VueWeekScheduler
-       },
-   // ... data, methods, mounted (), etc.
-   }
+    components: {
+        VueWeekScheduler
+    },
+// ... data, methods, mounted (), etc.
+}
 ```
 
-## Configuration
+## Props
 
 ### `config`
 
@@ -44,16 +46,16 @@ export default {
 
 ``` javascript
 {
-     hour: 24, // 12
-     days: 7, // 7/5
-     periodDuration: 15, // 15/30/60
-     periodTitle: "",
-     periodBackgroundColor: "#F44336FF",
-     periodBorderColor: "transparent",
-     periodTextColor: "#000",
-     periodRemoveButton: "Remove",
-     periodDuplicateButton: "Duplicate",
-     daysList: [
+     hour: 24, // hour format, 24/12
+     days: 7, // number of days, 7/5
+     periodDuration: 15, // event duration inteval 15/30/60
+     periodTitle: "", // event default title
+     periodBackgroundColor: "#F44336FF", // event color
+     periodBorderColor: "transparent", // event border color
+     periodTextColor: "#000", // event text color
+     periodRemoveButton: "Remove", // label of event remove button
+     periodDuplicateButton: "Duplicate", // label of event duplicate button
+     daysList: [    // list of days labels
        "Monday",
        "Tuesday",
        "Wednesday",
@@ -65,8 +67,6 @@ export default {
 }
 ```
 
-Same configuration of https://github.com/Yehzuna/jquery-schedule
-
 ### `value`
 
 - Type: `array`
@@ -77,6 +77,21 @@ Array of events, supports two-way binding (`v-model`)
 ### `editable`
 
 - Type: `boolean`
-- Default: `false`
+- Default: `false`Events
 
-Whether or not the component permits to edit events
+Whether or not the component permits to add/edit events
+
+## Events
+
+### `edit(obj)`
+
+``` javascript
+obj: {
+    day: number,
+    index: number
+}
+```
+
+### `error(err)`
+
+- `err` error throwed during initialization
