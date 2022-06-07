@@ -1,5 +1,12 @@
 
 
+# [0.3.0](https://github.com/innovation-system/vuetify-week-scheduler/compare/v0.2.0...v0.3.0) (2022-06-07)
+
+
+### Bug Fixes
+
+* period border color and text color ([9c72987](https://github.com/innovation-system/vuetify-week-scheduler/commit/9c72987d7ff255a28036d1a2df8f6a8dd5dec92e))
+
 # 0.2.0 (2022-06-07)
 
 
