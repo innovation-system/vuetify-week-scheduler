@@ -8,12 +8,10 @@
           <v-btn class="ml-2" color="warning" @click="events = []">
             Clear all
           </v-btn>
-         
         </v-row>
-         <v-row class="ml-5 mb-5">
+        <v-row class="ml-5 mb-5">
           <small>* Right click on an event to edit it</small>
-
-          </v-row>
+        </v-row>
         <vuetify-week-scheduler
           @edit="onEdit"
           v-model="events"
@@ -23,50 +21,51 @@
       </v-container>
 
       <v-dialog
-      v-model="editDialog"
-      persistent
-      v-if="editEvent"
-      max-width="400px"
-    >
-      <v-card>
-        <v-card-title>
-          <span class="text-h5">Edit event</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col
-                cols="12"
-              >
-                <v-text-field
-                  label="Title"
-                  required
-                  v-model="editEvent.title"
-                ></v-text-field>
-              </v-col>
+        v-model="editDialog"
+        persistent
+        v-if="editEvent"
+        max-width="400px"
+      >
+        <v-card>
+          <v-card-title>
+            <span class="text-h5">Edit event</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field
+                    label="Title"
+                    required
+                    v-model="editEvent.title"
+                  ></v-text-field>
+                </v-col>
 
-              <v-col
-                cols="12"
-              >
-
-              <v-icon :color="c" :style="{ border:  editEvent.backgroundColor === c ? '1px solid #ccc' : '' }" v-for="c in colors" :key="c" @click="editEvent.backgroundColor = c" size="50px">mdi-square</v-icon>
-                
-              </v-col>
-            </v-row>
+                <v-col cols="12">
+                  <v-icon
+                    :color="c"
+                    :style="{
+                      border:
+                        editEvent.backgroundColor === c ? '1px solid #ccc' : '',
+                    }"
+                    v-for="c in colors"
+                    :key="c"
+                    @click="editEvent.backgroundColor = c"
+                    size="50px"
+                    >mdi-square</v-icon
+                  >
+                </v-col>
+              </v-row>
             </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="blue darken-1"
-            text
-            @click="editDialog = false"
-          >
-            Close
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="blue darken-1" text @click="editDialog = false">
+              Close
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-app>
   </div>
 </template>
@@ -84,28 +83,21 @@ export default Vue.extend({
     editable: true,
     config: {
       periodBackgroundColor: "#F44336",
-      periodTitle: 0
+      periodTitle: 0,
     },
     editDialog: false,
     editEvent: null,
-    colors: [
-      "#F44336",
-      "#3F51B5",
-      "#9C27B0",
-      "#FF9800",
-      "#4CAF50",
-      "#FFEB3B"]
+    colors: ["#F44336", "#3F51B5", "#9C27B0", "#FF9800", "#4CAF50", "#FFEB3B"],
   }),
   methods: {
     onEdit(e) {
-			const { day, index } = e
+      const { day, index } = e;
 
-			const { periods } = this.events[day]
-			this.editEvent = periods[index]
+      const { periods } = this.events[day];
+      this.editEvent = periods[index];
 
-      this.editDialog = true
-			
+      this.editDialog = true;
     },
-  }
+  },
 });
 </script>
