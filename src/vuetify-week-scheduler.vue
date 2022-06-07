@@ -173,15 +173,12 @@ export default {
         hour: 24, // 12
         days: 7, // 7/5
         periodDuration: 15, // 15/30/60
-        periodColors: [],
         periodTitle: "",
-        numberInput: false,
         periodBackgroundColor: "#F44336FF",
         periodBorderColor: "transparent",
         periodTextColor: "#000",
         periodRemoveButton: "Remove",
         periodDuplicateButton: "Duplicate",
-        periodTitlePlaceholder: "Title",
         daysList: [
           "Monday",
           "Tuesday",
@@ -287,15 +284,6 @@ export default {
     },
     init() {
       try {
-        // colors validation
-        if (this.settings.periodColors.length > 0) {
-          this.settings.periodColors.forEach((color) => {
-            if (!Array.isArray(color) || color.length !== 3) {
-              throw new Error("Invalid period color");
-            }
-          });
-        }
-
         // duration validation
         if (![15, 30, 60].includes(this.settings.periodDuration)) {
           throw new Error("Invalide period duration");

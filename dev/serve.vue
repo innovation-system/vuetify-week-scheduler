@@ -12,6 +12,7 @@
         <vuetify-week-scheduler
           @edit="onEdit"
           v-model="events"
+          :config="config"
           :editable="editable"
         />
       </v-container>
