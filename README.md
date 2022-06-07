@@ -22,7 +22,7 @@ yarn add vuetify-week-scheduler
 
 ## Demo
 
-Checkout a demo [here](t https://innovation-system.github.io/vuetify-week-scheduler/).
+Checkout a demo [here](https://innovation-system.github.io/vuetify-week-scheduler/).
 
 ## Usage
 
