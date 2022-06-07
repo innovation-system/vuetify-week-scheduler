@@ -20,6 +20,10 @@ npm install vuetify-week-scheduler --save
 yarn add vuetify-week-scheduler
 ```
 
+## Demo
+
+Checkout a demo [here](t https://innovation-system.github.io/vuetify-week-scheduler/).
+
 ## Usage
 
 Import component
