@@ -2,13 +2,18 @@
   <div id="app">
     <v-app>
       <v-container>
-        <h1>Vuetify Week Scheduler</h1>
+        <h1><v-icon>mdi-calendar</v-icon> Vuetify Week Scheduler</h1>
         <v-row class="ml-5 mt-5" justify="start" align="center">
           <v-checkbox :label="'Editable'" v-model="editable"></v-checkbox>
           <v-btn class="ml-2" color="warning" @click="events = []">
             Clear all
           </v-btn>
+         
         </v-row>
+         <v-row class="ml-5 mb-5">
+          <small>* Right click on an event to edit it</small>
+
+          </v-row>
         <vuetify-week-scheduler
           @edit="onEdit"
           v-model="events"
