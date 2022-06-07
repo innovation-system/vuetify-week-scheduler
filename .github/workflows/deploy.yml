@@ -2,6 +2,9 @@ name: deploy
 
 on:
   push:
+    paths:
+      - "dev/**"
+      - "src/*.vue"
     branches:
       - main
 
