@@ -137,6 +137,7 @@ if (!argv.format || argv.format === "cjs") {
           optimizeSSR: true,
         },
       }),
+      vuetify({ include: "src/**" }),
       ...baseConfig.plugins.postVue,
       babel(baseConfig.plugins.babel),
     ],
@@ -161,6 +162,7 @@ if (!argv.format || argv.format === "iife") {
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
       ...baseConfig.plugins.postVue,
+      vuetify({ include: "src/**" }),
       babel(baseConfig.plugins.babel),
       terser({
         output: {
