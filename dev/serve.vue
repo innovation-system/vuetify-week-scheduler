@@ -1,20 +1,15 @@
 <template>
   <div id="app">
-    <v-container>
-      <h1>Vuetify Week Scheduler</h1>
-      <v-col>
-        <v-checkbox
-          label="Editable"
-          :v-model="editable"
-        ></v-checkbox>
-        <v-btn
-          color="primary"
-          text
-          @click="events = []"
-          > Clear all </v-btn>
-      </v-col>
-      <vuetify-week-scheduler v-model="events" :editable="editable" />
-    </v-container>
+    <v-app>
+      <v-container>
+        <h1>Vuetify Week Scheduler</h1>
+        <v-row class="ml-5 mt-5" justify="start" align="center">
+          <v-checkbox :label="'Editable'" v-model="editable"></v-checkbox>
+          <v-btn class="ml-2" color="warning" @click="events = []"> Clear all </v-btn>
+        </v-row>
+        <vuetify-week-scheduler v-model="events" :editable="editable" />
+      </v-container>
+    </v-app>
   </div>
 </template>
 
@@ -31,10 +26,5 @@ export default Vue.extend({
     editable: true,
     config: {},
   }),
-  watch: {
-    editable(val) {
-      console.log(val)
-    },
-  }
 });
 </script>
