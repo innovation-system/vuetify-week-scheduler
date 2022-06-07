@@ -763,13 +763,12 @@ export default {
 .vws-period-time,
 .vws-period-title {
   display: block;
-  line-height: 12px;
-  letter-spacing: -0.5px;
+  line-height: 20px;
+  letter-spacing: -0.5px; 
   word-break: break-all;
   overflow: hidden;
 }
 .vws-period-title {
-  padding-top: 5px;
   font-size: 15px;
 }
 .vws-period-time {

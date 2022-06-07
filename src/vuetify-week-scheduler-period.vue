@@ -24,7 +24,7 @@
             options.title
           }}</span>
         </div>
-        <div v-show="!shortPeriod" class="vws-period-title">
+        <div v-show="!shortPeriod" class="vws-period-title text-truncate">
           {{ options.title }}
         </div>
         <div
