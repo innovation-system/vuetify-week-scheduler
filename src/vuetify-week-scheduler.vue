@@ -81,17 +81,17 @@
 </template>
 
 <script>
-import SchedulerPeriod from './vuetify-week-scheduler-period.vue';
+import SchedulerPeriod from "./vuetify-week-scheduler-period.vue";
 
 export default {
   name: "vuetify-week-scheduler", // vue component name
   components: {
-    SchedulerPeriod
+    SchedulerPeriod,
   },
   props: {
     config: { type: Object, default: () => {} },
     value: { type: Array, required: true },
-    editable: { type: Boolean, default: false }
+    editable: { type: Boolean, default: false },
   },
   data() {
     return {
@@ -298,6 +298,7 @@ export default {
           d?.periods.forEach((period, i) => {
             if (!this.isValid(period, d.periods)) {
               d.periods.splice(i, 1);
+              // eslint-disable-next-line no-console
               console.error("Invalid period duration", period);
             }
           });
@@ -752,7 +753,7 @@ export default {
 .vws-period-title {
   display: block;
   line-height: 20px;
-  letter-spacing: -0.5px; 
+  letter-spacing: -0.5px;
   word-break: break-all;
   overflow: hidden;
 }

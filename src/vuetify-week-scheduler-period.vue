@@ -142,7 +142,6 @@ export default {
       this.addListener(document, "mouseup", onUp);
       this.addListener(document, "touchmove", onMove);
       this.addListener(document, "mousemove", onMove);
-
     },
     handleResize() {
       const el = this.$el;

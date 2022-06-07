@@ -72,7 +72,7 @@
 
 <script>
 import Vue from "vue";
-import VuetifyWeekScheduler from "@/vuetify-week-scheduler.vue";
+import VuetifyWeekScheduler from "../src/vuetify-week-scheduler.vue";
 
 export default Vue.extend({
   components: {
