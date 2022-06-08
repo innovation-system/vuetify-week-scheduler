@@ -24,6 +24,8 @@ yarn add vuetify-week-scheduler
 
 Checkout a demo [here](https://innovation-system.github.io/vuetify-week-scheduler/).
 
+Demo source code is [here](/dev/)
+
 ## Usage
 
 Import component
@@ -78,12 +80,38 @@ export default {
 - Type: `array`
 - Required: `true`
   
-Array of events, supports two-way binding (`v-model`)
+Array of events, two-way binding with (`v-model`). The format of events is:
+
+```js
+[
+      {
+        "day": 0,
+        "periods": [
+          {
+            "start": "00:00",
+            "end": "09:00",
+            "title": 15,
+            "backgroundColor": "#FF0000FF"
+          },
+          {
+            "start": "09:00",
+            "end": "20:00",
+            "title": 22,
+            "backgroundColor": "#008000FF"
+          }
+        ]
+      },
+      {
+        "day": 1,
+        "periods": []
+      }
+      ...
+```
 
 ### `editable`
 
 - Type: `boolean`
-- Default: `false`Events
+- Default: `false`
 
 Whether or not the component permits to add/edit events
 
@@ -91,10 +119,12 @@ Whether or not the component permits to add/edit events
 
 ### `edit(obj)`
 
+In desktop devices this event is emitted when user right clicks on double clicks on an event, in touch devices this is emitted when user long press on an event.
+
 ``` javascript
 obj: {
-    day: number,
-    index: number
+    day: number, // the day index
+    index: number // the period index
 }
 ```
 

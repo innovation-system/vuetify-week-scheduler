@@ -16,6 +16,9 @@
                 :period="p"
                 :settings="settings"
                 :blockHeight="blockHeight"
+                :editable="editable"
+                @period-drag="onPeriodDown($event, day.day, p.index)"
+                @period-resize="onPeriodResize($event, day.day, p.index)"
                 @position-change="onPositionChange(day.day, p.index, $event)"
                 @delete="deletePeriod(day.day, p.index)"
                 @clone="clonePeriod(day.day, p.index)"
@@ -52,7 +55,7 @@
                 }}
               </strong>
               <v-btn
-                v-show="editable && (hover || isMobile)"
+                v-show="editable && hover"
                 icon
                 x-small
                 @click="clearDayPeriods(n - 1)"
@@ -61,7 +64,7 @@
                 <v-icon x-small>mdi-close</v-icon>
               </v-btn>
               <v-btn
-                v-show="editable && (hover || isMobile)"
+                v-show="editable && hover"
                 icon
                 x-small
                 @click="cloneDayPeriods(n - 1)"
@@ -102,12 +105,14 @@ export default {
       blockHeight: 0,
       events: [], // keep track of listeners
       newPeriod: null,
+      draggingPeriod: null,
+      resizingPeriod: null,
     };
   },
   mounted() {
     this.settings = { ...this.getDefaults(), ...this.config };
     this.init();
-    this.handleCreate();
+    this.handleEvents();
   },
   beforeDestroy() {
     this.events.forEach((e) => {
@@ -190,7 +195,7 @@ export default {
         ],
       };
     },
-    /** When click on a day */
+    /** When clicking on a day */
     onDayDown(day, e) {
       if (!this.editable) return;
 
@@ -226,8 +231,7 @@ export default {
         ...period,
       };
     },
-    /** Handle period creation with click and drag */
-    handleCreate() {
+    handleEvents() {
       const onUp = () => {
         if (this.newPeriod) {
           this.addPeriod(this.newPeriod.day, {
@@ -235,12 +239,25 @@ export default {
             end: this.newPeriod.end,
           });
           this.newPeriod = null;
+        } else if (this.draggingPeriod) {
+          const { el, day, index } = this.draggingPeriod;
+          const top = el.offsetTop;
+          const height = el.clientHeight;
+          this.onPositionChange(day, index, { top, height });
+          this.draggingPeriod = null;
+        } else if (this.resizingPeriod) {
+          const { el, day, index } = this.resizingPeriod;
+          const top = el.offsetTop;
+          const height = el.clientHeight;
+          this.onPositionChange(day, index, { top, height });
+          this.resizingPeriod = null;
         }
       };
 
       const onMove = (e) => {
-        e.preventDefault();
         if (this.newPeriod) {
+          e.preventDefault();
+
           const dragDelta = this.roundBlock(
             this.newPeriod.dragStart - this.getY(e, true)
           );
@@ -258,6 +275,49 @@ export default {
               Object.assign(this.newPeriod, { height, start, end });
             }
           }
+        } else if (this.draggingPeriod) {
+          e.preventDefault();
+          const { startDrag, startTop, el, day, index } = this.draggingPeriod;
+          const dragDelta = startDrag - this.getY(e, true);
+          const top = this.roundBlock(startTop - dragDelta);
+          const height = el.clientHeight;
+          const maxHeight = el.parentElement.clientHeight;
+
+          if (top + height <= maxHeight && top >= 0) {
+            el.style.top = `${top}px`;
+            this.onPositionChange(day, index, {
+              top,
+              height,
+            });
+          }
+        } else if (this.resizingPeriod) {
+          e.preventDefault();
+          const { startDrag, startTop, startHeight, el, day, index, isUp } =
+            this.resizingPeriod;
+
+          const dragDelta = this.roundBlock(startDrag - this.getY(e, true));
+          const top = isUp
+            ? this.roundBlock(startTop - dragDelta)
+            : el.offsetTop;
+          let height = this.roundBlock(
+            startHeight + (isUp ? dragDelta : -dragDelta)
+          );
+
+          const maxHeight = document.querySelector(".vws-day").clientHeight;
+
+          height = Math.max(height, this.blockHeight);
+
+          if (top + height <= maxHeight && top >= 0) {
+            el.style.height = `${height}px`;
+
+            if (isUp) {
+              el.style.top = `${top}px`;
+            }
+            this.onPositionChange(day, index, {
+              top,
+              height,
+            });
+          }
         }
       };
 
@@ -266,6 +326,33 @@ export default {
 
       this.addListener(document, "mousemove", onMove);
       this.addListener(document, "touchmove", onMove);
+    },
+    onPeriodDown(e, day, index) {
+      if (this.editable) {
+        const el = e.currentTarget;
+        this.draggingPeriod = {
+          el,
+          day,
+          index,
+          startDrag: this.getY(e, false),
+          startTop: el.offsetTop,
+        };
+      }
+    },
+    onPeriodResize(event, day, index) {
+      if (this.editable) {
+        const { $event: e, isUp, $el } = event;
+
+        this.resizingPeriod = {
+          el: $el,
+          day,
+          index,
+          isUp,
+          startDrag: this.getY(e, false),
+          startTop: $el.offsetTop,
+          startHeight: $el.clientHeight,
+        };
+      }
     },
     addPeriod(day, period) {
       if (!this.data[day]) {
@@ -565,7 +652,7 @@ export default {
           e.preventDefault();
         }
         const touch = e.touches[0] || e.changedTouches[0];
-        y = touch.pageY;
+        y = touch.clientY;
       } else if (
         e.type === "mousedown" ||
         e.type === "mouseup" ||

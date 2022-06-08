@@ -9,9 +9,14 @@
             Clear all
           </v-btn>
         </v-row>
-        <v-row class="ml-5 mb-5">
-          <small>* Right click on an event to edit it</small>
-        </v-row>
+        <v-col class="ml-5 mb-1">
+          <p class="ma-0 text-caption">
+            * Desktop: Right click or double click on an event to edit it
+          </p>
+          <p class="ma-0 text-caption">
+            * Touch devices: Long press on an event to edit it
+          </p>
+        </v-col>
         <vuetify-week-scheduler
           @edit="onEdit"
           v-model="events"
