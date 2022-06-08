@@ -1,8 +1,19 @@
 <template>
   <div id="app">
     <v-app>
+      <v-app-bar>
+        <v-app-bar-title
+          ><v-icon>mdi-calendar</v-icon> Vuetify Week Scheduler</v-app-bar-title
+        >
+
+        <v-spacer></v-spacer>
+
+        <v-btn title="Open Github" @click="openGithub" icon>
+          <v-icon>mdi-github</v-icon>
+        </v-btn>
+      </v-app-bar>
+
       <v-container>
-        <h1><v-icon>mdi-calendar</v-icon> Vuetify Week Scheduler</h1>
         <v-row class="ml-5 mt-5" justify="start" align="center">
           <v-checkbox :label="'Editable'" v-model="editable"></v-checkbox>
           <v-btn class="ml-2" color="warning" @click="events = []">
@@ -71,6 +82,11 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+      <v-footer fixed>
+        <v-spacer></v-spacer>
+        <div>Innovation System &copy; {{ new Date().getFullYear() }}</div>
+        <v-spacer></v-spacer>
+      </v-footer>
     </v-app>
   </div>
 </template>
@@ -105,6 +121,12 @@ export default Vue.extend({
       this.editEvent = periods[index];
 
       this.editDialog = true;
+    },
+    openGithub() {
+      window.open(
+        "https://github.com/innovation-system/vuetify-week-scheduler",
+        "_blank"
+      );
     },
   },
 });
