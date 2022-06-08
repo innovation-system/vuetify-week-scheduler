@@ -112,7 +112,7 @@ export default {
   mounted() {
     this.settings = { ...this.getDefaults(), ...this.config };
     this.init();
-    this.handleCreate();
+    this.handleEvents();
   },
   beforeDestroy() {
     this.events.forEach((e) => {
@@ -195,7 +195,7 @@ export default {
         ],
       };
     },
-    /** When click on a day */
+    /** When clicking on a day */
     onDayDown(day, e) {
       if (!this.editable) return;
 
@@ -231,8 +231,7 @@ export default {
         ...period,
       };
     },
-    /** Handle period creation with click and drag */
-    handleCreate() {
+    handleEvents() {
       const onUp = () => {
         if (this.newPeriod) {
           this.addPeriod(this.newPeriod.day, {
@@ -277,6 +276,7 @@ export default {
             }
           }
         } else if (this.draggingPeriod) {
+          e.preventDefault();
           const { startDrag, startTop, el, day, index } = this.draggingPeriod;
           const dragDelta = startDrag - this.getY(e, true);
           const top = this.roundBlock(startTop - dragDelta);
@@ -291,6 +291,7 @@ export default {
             });
           }
         } else if (this.resizingPeriod) {
+          e.preventDefault();
           const { startDrag, startTop, startHeight, el, day, index, isUp } =
             this.resizingPeriod;
 
@@ -651,7 +652,7 @@ export default {
           e.preventDefault();
         }
         const touch = e.touches[0] || e.changedTouches[0];
-        y = touch.pageY;
+        y = touch.clientY;
       } else if (
         e.type === "mousedown" ||
         e.type === "mouseup" ||
