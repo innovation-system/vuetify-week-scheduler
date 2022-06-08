@@ -5,6 +5,7 @@ on:
     paths:
       - "dev/**"
       - "src/*.vue"
+      - ".github/workflows/deploy.yml"
     branches:
       - main
 
@@ -52,6 +53,7 @@ jobs:
       - name: Push changes
         if: ${{ steps.check.outputs.changed == 'true' }}
         run: |
+          git add .
           git config --global user.name 'Daniel Lando'
           git config --global user.email 'daniel.sorridi@gmail.com'
           git commit -am "docs: update demo"
