@@ -1,5 +1,12 @@
 
 
+## [0.3.1](https://github.com/innovation-system/vuetify-week-scheduler/compare/v0.3.0...v0.3.1) (2022-06-08)
+
+
+### Bug Fixes
+
+* performances improvments and better touch support ([#2](https://github.com/innovation-system/vuetify-week-scheduler/issues/2)) ([2b6fa64](https://github.com/innovation-system/vuetify-week-scheduler/commit/2b6fa64ac4b02aa33c7a01c5a78c820158ada30a))
+
 # [0.3.0](https://github.com/innovation-system/vuetify-week-scheduler/compare/v0.2.0...v0.3.0) (2022-06-07)
 
 
