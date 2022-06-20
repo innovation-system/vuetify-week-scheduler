@@ -4,7 +4,7 @@
       class="vws-period"
       @mousedown.stop="$emit('period-drag', $event)"
       @touchstart.stop="$emit('period-drag', $event)"
-      @contextmenu.stop.prevent="$emit('edit')"
+      @contextmenu.stop.prevent="$emit('edit', $event)"
       @dblclick.stop.prevent="$emit('edit')"
       :style="{
         backgroundColor: options.backgroundColor,

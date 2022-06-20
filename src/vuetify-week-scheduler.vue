@@ -22,7 +22,7 @@
                 @position-change="onPositionChange(day.day, p.index, $event)"
                 @delete="deletePeriod(day.day, p.index)"
                 @clone="clonePeriod(day.day, p.index)"
-                @edit="editPeriod(day.day, p.index)"
+                @edit="editPeriod(day.day, p.index, $event)"
               ></scheduler-period>
 
               <div
@@ -80,6 +80,39 @@
         <div class="vws-grid-hour">{{ formatHour(n - 1) }}</div>
       </div>
     </div>
+    <v-menu
+      v-if="showEditMenu"
+      v-model="showEditMenu"
+      :position-x="x"
+      :position-y="y"
+      absolute
+      offset-y
+    >
+      <v-list>
+        <v-list-item>
+          <v-list-item-content>
+            <v-text-field
+              label="Title"
+              required
+              v-model="editEvent.title"
+            ></v-text-field>
+          </v-list-item-content>
+          <v-list-item-content>
+            <v-icon
+              :color="c"
+              :style="{
+                border: editEvent.backgroundColor === c ? '1px solid #ccc' : '',
+              }"
+              v-for="c in colors"
+              :key="c"
+              @click="editEvent.backgroundColor = c"
+              size="50px"
+              >mdi-square</v-icon
+            >
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-menu>
   </div>
 </template>
 
@@ -107,6 +140,18 @@ export default {
       newPeriod: null,
       draggingPeriod: null,
       resizingPeriod: null,
+      showEditMenu: false,
+      x: 0,
+      y: 0,
+      editEvent: null,
+      colors: [
+        "#F44336",
+        "#3F51B5",
+        "#9C27B0",
+        "#FF9800",
+        "#4CAF50",
+        "#FFEB3B",
+      ],
     };
   },
   mounted() {
@@ -635,9 +680,20 @@ export default {
 
       element.addEventListener(event, callback, options);
     },
-    async editPeriod(day, index) {
+    async editPeriod(day, index, e) {
       if (this.editable) {
-        this.$emit("edit", { day, index });
+        if (this.$listeners.edit) {
+          this.$emit("edit", { day, index });
+        } else {
+          e.preventDefault();
+          this.showEditMenu = false;
+          this.x = e.clientX;
+          this.y = e.clientY;
+          const { periods } = this.value[day];
+          this.editEvent = periods[index];
+          await this.$nextTick();
+          this.showEditMenu = true;
+        }
       }
     },
     getY(e, prevent) {
