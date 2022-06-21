@@ -78,6 +78,15 @@ export default {
        "Saturday",
        "Sunday",
      ],
+     colors: [  // list of event's possible colors
+       "#F44336",
+       "#FF9800",
+       "#FFEB3B",
+       "#8BC34A",
+       "#4CAF50",
+       "#00BCD4",
+       "#2196F3",
+      ]
 }
 ```
 

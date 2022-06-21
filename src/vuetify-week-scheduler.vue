@@ -87,29 +87,30 @@
       :position-y="y"
       absolute
       offset-y
+      :close-on-content-click="false"
     >
-      <v-list>
+      <v-list dense>
         <v-list-item>
-          <v-list-item-content>
-            <v-text-field
-              label="Title"
-              required
-              v-model="editEvent.title"
-            ></v-text-field>
-          </v-list-item-content>
-          <v-list-item-content>
+          <v-text-field
+            label="Title"
+            required
+            v-model="editEvent.title"
+          ></v-text-field>
+        </v-list-item>
+        <v-list-item class="d-flex" style="max-width: 300px">
+          <v-btn
+            icon
+            v-for="c in settings.colors"
+            :key="c"
+            :elevation="editEvent.backgroundColor === c ? 10 : 0"
+          >
             <v-icon
               :color="c"
-              :style="{
-                border: editEvent.backgroundColor === c ? '1px solid #ccc' : '',
-              }"
-              v-for="c in colors"
-              :key="c"
               @click="editEvent.backgroundColor = c"
-              size="50px"
-              >mdi-square</v-icon
+              size="35px"
+              >mdi-circle</v-icon
             >
-          </v-list-item-content>
+          </v-btn>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -144,14 +145,6 @@ export default {
       x: 0,
       y: 0,
       editEvent: null,
-      colors: [
-        "#F44336",
-        "#3F51B5",
-        "#9C27B0",
-        "#FF9800",
-        "#4CAF50",
-        "#FFEB3B",
-      ],
     };
   },
   mounted() {
@@ -237,6 +230,15 @@ export default {
           "Friday",
           "Saturday",
           "Sunday",
+        ],
+        colors: [
+          "#F44336",
+          "#FF9800",
+          "#FFEB3B",
+          "#8BC34A",
+          "#4CAF50",
+          "#00BCD4",
+          "#2196F3",
         ],
       };
     },
