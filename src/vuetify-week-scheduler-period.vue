@@ -5,7 +5,7 @@
       @mousedown.stop="$emit('period-drag', $event)"
       @touchstart.stop="$emit('period-drag', $event)"
       @contextmenu.stop.prevent="$emit('edit', $event)"
-      @dblclick.stop.prevent="$emit('edit')"
+      @dblclick.stop.prevent="$emit('edit', $event)"
       :style="{
         backgroundColor: options.backgroundColor,
         outlineColor: options.borderColor,
