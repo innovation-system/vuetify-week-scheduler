@@ -38,6 +38,11 @@
       "tagName": "v${version}",
       "requireCleanWorkingDir": false
     },
+    "hooks": {
+      "before:init": [
+        "npm run build"
+      ]
+    },
     "npm": {
       "publish": true
     },
