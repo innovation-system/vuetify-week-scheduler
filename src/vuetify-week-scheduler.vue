@@ -22,7 +22,7 @@
                 @position-change="onPositionChange(day.day, p.index, $event)"
                 @delete="deletePeriod(day.day, p.index)"
                 @clone="clonePeriod(day.day, p.index)"
-                @edit="editPeriod(day.day, p.index)"
+                @edit="editPeriod(day.day, p.index, $event)"
               ></scheduler-period>
 
               <div
@@ -80,6 +80,41 @@
         <div class="vws-grid-hour">{{ formatHour(n - 1) }}</div>
       </div>
     </div>
+    <v-menu
+      v-if="showEditMenu"
+      v-model="showEditMenu"
+      :position-x="x"
+      :position-y="y"
+      absolute
+      offset-y
+      :close-on-content-click="false"
+    >
+      <v-list dense>
+        <v-list-item>
+          <v-text-field
+            label="Title"
+            required
+            v-model="editEvent.title"
+            :type="settings.inputType"
+          ></v-text-field>
+        </v-list-item>
+        <v-list-item class="d-flex" style="max-width: 300px">
+          <v-btn
+            icon
+            v-for="c in settings.colors"
+            :key="c"
+            :elevation="editEvent.backgroundColor === c ? 10 : 0"
+          >
+            <v-icon
+              :color="c"
+              @click="editEvent.backgroundColor = c"
+              size="35px"
+              >mdi-circle</v-icon
+            >
+          </v-btn>
+        </v-list-item>
+      </v-list>
+    </v-menu>
   </div>
 </template>
 
@@ -107,6 +142,10 @@ export default {
       newPeriod: null,
       draggingPeriod: null,
       resizingPeriod: null,
+      showEditMenu: false,
+      x: 0,
+      y: 0,
+      editEvent: null,
     };
   },
   mounted() {
@@ -184,6 +223,7 @@ export default {
         periodTextColor: "#000",
         periodRemoveButton: "Remove",
         periodDuplicateButton: "Duplicate",
+        inputType: "text",
         daysList: [
           "Monday",
           "Tuesday",
@@ -192,6 +232,15 @@ export default {
           "Friday",
           "Saturday",
           "Sunday",
+        ],
+        colors: [
+          "#F44336",
+          "#FF9800",
+          "#FFEB3B",
+          "#8BC34A",
+          "#4CAF50",
+          "#00BCD4",
+          "#2196F3",
         ],
       };
     },
@@ -635,9 +684,20 @@ export default {
 
       element.addEventListener(event, callback, options);
     },
-    async editPeriod(day, index) {
+    async editPeriod(day, index, e) {
       if (this.editable) {
-        this.$emit("edit", { day, index });
+        if (this.$listeners.edit) {
+          this.$emit("edit", { day, index });
+        } else {
+          e.preventDefault();
+          this.showEditMenu = false;
+          this.x = e.clientX;
+          this.y = e.clientY;
+          const { periods } = this.value[day];
+          this.editEvent = periods[index];
+          await this.$nextTick();
+          this.showEditMenu = true;
+        }
       }
     },
     getY(e, prevent) {
