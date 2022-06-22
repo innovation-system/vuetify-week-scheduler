@@ -95,6 +95,7 @@
             label="Title"
             required
             v-model="editEvent.title"
+            :type="settings.inputType"
           ></v-text-field>
         </v-list-item>
         <v-list-item class="d-flex" style="max-width: 300px">
@@ -222,6 +223,7 @@ export default {
         periodTextColor: "#000",
         periodRemoveButton: "Remove",
         periodDuplicateButton: "Duplicate",
+        inputType: "text",
         daysList: [
           "Monday",
           "Tuesday",

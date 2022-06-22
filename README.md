@@ -86,7 +86,8 @@ export default {
        "#4CAF50",
        "#00BCD4",
        "#2196F3",
-      ]
+      ],
+      inputType: "text" // usually set as text or number
 }
 ```
 

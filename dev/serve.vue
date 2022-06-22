@@ -63,12 +63,6 @@ export default Vue.extend({
     },
   }),
   methods: {
-    onEdit(e) {
-      const { day, index } = e;
-      const { periods } = this.events[day];
-      this.editEvent = periods[index];
-      this.editDialog = true;
-    },
     openGithub() {
       window.open(
         "https://github.com/innovation-system/vuetify-week-scheduler",
