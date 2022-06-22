@@ -1,5 +1,12 @@
 
 
+# [0.4.0](https://github.com/innovation-system/vuetify-week-scheduler/compare/v0.3.1...v0.4.0) (2022-06-22)
+
+
+### Features
+
+* default edit menu ([#4](https://github.com/innovation-system/vuetify-week-scheduler/issues/4)) ([cfeb7cc](https://github.com/innovation-system/vuetify-week-scheduler/commit/cfeb7ccd83a25952d6212d752edd00ad080fccac))
+
 ## [0.3.1](https://github.com/innovation-system/vuetify-week-scheduler/compare/v0.3.0...v0.3.1) (2022-06-08)
 
 
