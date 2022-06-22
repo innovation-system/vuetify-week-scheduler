@@ -1,5 +1,12 @@
 
 
+## [0.4.1](https://github.com/innovation-system/vuetify-week-scheduler/compare/v0.4.0...v0.4.1) (2022-06-22)
+
+
+### Bug Fixes
+
+* dbclick emits $event ([8ea5e3f](https://github.com/innovation-system/vuetify-week-scheduler/commit/8ea5e3fec4b10c75d57a8dd3d2b323f8478d11d8))
+
 # [0.4.0](https://github.com/innovation-system/vuetify-week-scheduler/compare/v0.3.1...v0.4.0) (2022-06-22)
 
 
