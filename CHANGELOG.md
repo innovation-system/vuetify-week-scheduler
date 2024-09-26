@@ -1,5 +1,7 @@
 
 
+## [0.5.1](https://github.com/innovation-system/vuetify-week-scheduler/compare/v0.5.0...v0.5.1) (2024-09-26)
+
 # [0.5.0](https://github.com/innovation-system/vuetify-week-scheduler/compare/v0.4.1...v0.5.0) (2024-09-26)
 
 
