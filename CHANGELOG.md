@@ -1,5 +1,12 @@
 
 
+# [0.5.0](https://github.com/innovation-system/vuetify-week-scheduler/compare/v0.4.1...v0.5.0) (2024-09-26)
+
+
+### Features
+
+* add select whole day button ([#6](https://github.com/innovation-system/vuetify-week-scheduler/issues/6)) ([a081ecd](https://github.com/innovation-system/vuetify-week-scheduler/commit/a081ecdec6415c2827f49728060d16b304a33088))
+
 ## [0.4.1](https://github.com/innovation-system/vuetify-week-scheduler/compare/v0.4.0...v0.4.1) (2022-06-22)
 
 
