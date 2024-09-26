@@ -72,6 +72,15 @@
               >
                 <v-icon x-small>mdi-content-copy</v-icon>
               </v-btn>
+              <v-btn
+                v-show="editable && hover"
+                icon
+                x-small
+                @click="selectWholeDay(n - 1)"
+                :title="settings.periodSelectWholeButton"
+              >
+                <v-icon x-small>mdi-select-all</v-icon>
+              </v-btn>
             </div>
           </v-hover>
         </div>
@@ -223,6 +232,7 @@ export default {
         periodTextColor: "#000",
         periodRemoveButton: "Remove",
         periodDuplicateButton: "Duplicate",
+        periodSelectWholeButton: "Select whole day",
         inputType: "text",
         daysList: [
           "Monday",
@@ -726,6 +736,27 @@ export default {
       }
 
       return y;
+    },
+    selectWholeDay(day) {
+      if (this.data[day]) {
+        const { periods } = this.data[day];
+        if (periods.length > 0) {
+          periods[0].start = "00:00";
+          periods[0].end = "24:00";
+          this.data[day].periods = [periods[0]];
+        } else {
+          this.data[day].periods = [
+            {
+              start: "00:00",
+              end: "24:00",
+              title: this.settings.periodTitle,
+              backgroundColor: this.settings.periodBackgroundColor,
+              borderColor: this.settings.periodBorderColor,
+              textColor: this.settings.periodTextColor,
+            },
+          ];
+        }
+      }
     },
   },
 };
