@@ -21,13 +21,13 @@ See [Vuetify Week Scheduler V3](https://github.com/innovation-system/vuetify-wee
 ### NPM
 
 ```bash
-npm install vuetify-week-scheduler --save
+npm install @innovation-system/vuetify-week-scheduler --save
 ```
 
 ### Yarn
 
 ```bash
-yarn add vuetify-week-scheduler
+yarn add @innovation-system/vuetify-week-scheduler
 ```
 
 ## Demo
@@ -41,7 +41,7 @@ Demo source code is [here](/dev/)
 Import component
 
 ```javascript
-import VueWeekScheduler from "vuetify-week-scheduler";
+import VueWeekScheduler from "@innovation-system/vuetify-week-scheduler";
 ```
 
 And add to parent component
