@@ -12,17 +12,21 @@
 
 Inspired by [jquery-schedule](https://github.com/Yehzuna/jquery-schedule).
 
+## For Vue 3
+
+See [Vuetify Week Scheduler V3](https://github.com/innovation-system/vuetify-week-scheduler-v3).
+
 ## Installation
 
 ### NPM
 
-``` bash
+```bash
 npm install vuetify-week-scheduler --save
 ```
 
 ### Yarn
 
-``` bash
+```bash
 yarn add vuetify-week-scheduler
 ```
 
@@ -36,19 +40,19 @@ Demo source code is [here](/dev/)
 
 Import component
 
-``` javascript
-import VueWeekScheduler from 'vuetify-week-scheduler';
+```javascript
+import VueWeekScheduler from "vuetify-week-scheduler";
 ```
 
 And add to parent component
 
-``` javascript
+```javascript
 export default {
-    components: {
-        VueWeekScheduler
-    },
-// ... data, methods, mounted (), etc.
-}
+  components: {
+    VueWeekScheduler,
+  },
+  // ... data, methods, mounted (), etc.
+};
 ```
 
 ## Props
@@ -58,7 +62,7 @@ export default {
 - Type: `object`
 - Defaults:
 
-``` javascript
+```javascript
 {
      hour: 24, // hour format, 24/12
      days: 7, // number of days, 7/5
@@ -95,7 +99,7 @@ export default {
 
 - Type: `array`
 - Required: `true`
-  
+
 Array of events, two-way binding with (`v-model`). The format of events is:
 
 ```js
@@ -137,7 +141,7 @@ Whether or not the component permits to add/edit events
 
 In desktop devices this event is emitted when user right clicks on double clicks on an event, in touch devices this is emitted when user long press on an event.
 
-``` javascript
+```javascript
 obj: {
     day: number, // the day index
     index: number // the period index
