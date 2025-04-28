@@ -6,7 +6,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png)](https://opensource.org/licenses/mit-license.php)
 
-[![NPM Downloads](https://img.shields.io/npm/dm/vuetify-week-scheduler.svg?style=flat)](https://www.npmjs.com/package/@innovation-system/vuetify-week-scheduler)
+[![NPM Downloads](https://img.shields.io/npm/dm/@innovation-system/vuetify-week-scheduler.svg?style=flat)](https://www.npmjs.com/package/@innovation-system/vuetify-week-scheduler)
 
 > A simple component to manage weekly events
 
