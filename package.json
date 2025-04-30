@@ -1,6 +1,6 @@
 {
   "name": "@innovation-system/vuetify-week-scheduler",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Vuetify week scheduler for Vue 2",
   "repository": {
     "type": "git",
